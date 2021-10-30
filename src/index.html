@@ -14,9 +14,15 @@
   </head>
   <body>
     <div class="container">
-      <h1 class="title">Image search</h1>
+      <h1 class="title">Image finder</h1>
       <form class="search-form" id="search-form">
-        <input type="text" name="query" autocomplete="off" placeholder="Search images..." />
+        <input
+          class="search-input"
+          type="text"
+          name="query"
+          autocomplete="off"
+          placeholder="Search images..."
+        />
         <button class="search-btn" type="submit">Search</button>
       </form>
 
@@ -24,8 +30,13 @@
         <!-- Список <li> с карточками изображений -->
       </ul>
 
-      <button class="more-btn visually-hidden" type="button" data-action="load-more">
-        <span class="btn-caption">Load more</span>
+      <button class="more-btn is-hidden" type="button" data-action="load-more">
+        <span
+          class="spinner-border spinner-border-sm spinner is-hidden"
+          role="status"
+          aria-hidden="true"
+        ></span>
+        <span class="label">Load more</span>
       </button>
     </div>
     <script src="./index.js"></script>

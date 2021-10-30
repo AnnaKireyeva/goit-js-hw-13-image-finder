@@ -7,8 +7,9 @@ const refs = {
   loadMoreBtn: document.querySelector('.more-btn'),
 };
 const apiService = new ApiService();
-// let searchQuery = ' ';
+
 refs.searchForm.addEventListener('submit', onSearch);
+refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
 function onSearch(e) {
   e.preventDefault();
@@ -22,17 +23,31 @@ function onSearch(e) {
     clearGallery();
     appendMarkup(hits);
   });
+  showLoadMoreBtn();
 }
 
-refs.loadMoreBtn.addEventListener('click', onLoadMore);
 function onLoadMore(e) {
   apiService.fetchImages().then(appendMarkup);
 }
 
 function appendMarkup(hits) {
   refs.gallery.insertAdjacentHTML('beforeend', imageCard(hits));
+  scrollPage();
 }
 
 function clearGallery() {
   refs.gallery.innerHTML = '';
+}
+
+function showLoadMoreBtn() {
+  refs.loadMoreBtn.classList.remove('is-hidden');
+}
+
+function scrollPage() {
+  setTimeout(() => {
+    refs.loadMoreBtn.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+    });
+  }, 500);
 }
